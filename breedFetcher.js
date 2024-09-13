@@ -1,10 +1,10 @@
 // initialize needle
 const needle = require('needle');
 // api url
-const fetchBreedCats = (breedName, callback) => {
+const fetchBreedDescription = (breedName, callback) => {
   const url = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`;
 
-// error messages generation
+  // error messages generation
   needle.get(url, (error, response) => {
     if (error) {
       callback(`Request failed: ${error.message}`, null); // if url is messed up, send error message
@@ -24,12 +24,4 @@ const fetchBreedCats = (breedName, callback) => {
   });
 };
 
-const breedName = process.argv[2]; // able to write the breed name in the command line
-
-fetchBreedCats(breedName, (error, description) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(description);
-  }
-});
+module.exports = fetchBreedDescription;
